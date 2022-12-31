@@ -1,0 +1,16 @@
+
+{:status-str "000\t000\t000\t000\t025\t0000\t00:00\t000", :buffer []}
+
+{:pulse "000",
+ :rpm "000",
+ :speed "000",
+ :dist "000",
+ :req-power "025",
+ :energy "0000",
+ :time "00:00",
+ :power "000"}
+
+
+st: It is an important command for monitoring purpose. It can mean "current status" or "current state".
+It does not need any arguments and its output consists of 8 fields separated by tab-characters, where each fields means [pulse in Hz][rpm][speed in 0.1 km/h ][distance in 0.1 km][requested power][energy in kJ][time in minutes:seconds][actual power (?)]
+The fictional response 088\t072\t324\t009\t150\t0024\t10:02\t140 means:  pulse 88 beats per minute, 72 RPM, speed 32.4 km/h, distance 0.9 km, requested 150 Watt, burned energy 24kJ, time 10 minutes 02 seconds, actual power 140 Watt.
