@@ -1,8 +1,6 @@
-(ns heart-rate-model.mockup.mockup
+(ns mockup.core
   (:gen-class)
   )
-
-
 
 (defn state-string
   [state-map]
