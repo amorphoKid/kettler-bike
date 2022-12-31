@@ -1,0 +1,65 @@
+(undo-tree-save-format-version . 1)
+"faec646eae60ad53b3b5b316e147d9fc90a2f1dc"
+[nil nil nil nil (25520 29042 209041 747000) 0 nil]
+([nil nil ((#("(defn update-hr [pars val]
+" 0 1 (fontified t) 1 5 (face font-lock-keyword-face fontified t) 5 6 (fontified t) 6 15 (face font-lock-function-name-face fontified t) 15 27 (fontified t)) . 2337) (t 25520 28771 907133 400000)) nil (25520 29042 209037 62000) 0 nil])
+([nil nil ((#("  (dosync (ref-set pars {:mode (:mode @pars) :hr-target (:hr-target @pars)
+" 0 3 (fontified t) 3 9 (face font-lock-keyword-face fontified t) 9 25 (fontified t) 25 26 (face clojure-keyword-face fontified t) 26 30 (face clojure-keyword-face fontified t) 30 32 (fontified t) 32 33 (face clojure-keyword-face fontified t) 33 37 (face clojure-keyword-face fontified t) 37 45 (fontified t) 45 46 (face clojure-keyword-face fontified t) 46 55 (face clojure-keyword-face fontified t) 55 57 (fontified t) 57 58 (face clojure-keyword-face fontified t) 58 67 (face clojure-keyword-face fontified t) 67 74 (fontified t) 74 75 (fontified t)) . 2337) (undo-tree-id11 . -74)) nil (25520 29042 209031 525000) 0 nil])
+([nil nil ((#("                         :hr-actual (+ val (:hr-actual @pars))}))) 
+" 0 25 (fontified t) 25 26 (face clojure-keyword-face fontified t) 26 35 (face clojure-keyword-face fontified t) 35 44 (fontified t) 44 45 (face clojure-keyword-face fontified t) 45 54 (face clojure-keyword-face fontified t) 54 67 (fontified t) 67 68 (fontified t)) . 2337) (undo-tree-id10 . -67)) nil (25520 29042 209023 970000) 0 nil])
+([nil nil ((#("(defn kettler-control [pars]
+   (let [start-trans {:conditions []
+                      :on-success #(println @pars)
+                      :transition :start}]
+" 0 1 (fontified t) 1 5 (face font-lock-keyword-face fontified t) 5 6 (fontified t) 6 21 (face font-lock-function-name-face fontified t) 21 28 (fontified t) 28 29 (fontified t) 29 33 (fontified t) 33 36 (face font-lock-keyword-face fontified t) 36 37 (fontified t) 37 51 (fontified t) 51 52 (face clojure-keyword-face fontified t) 52 62 (face clojure-keyword-face fontified t) 62 88 (fontified t) 88 89 (face clojure-keyword-face fontified t) 89 99 (face clojure-keyword-face fontified t) 99 139 (fontified t) 139 140 (face clojure-keyword-face fontified t) 140 150 (face clojure-keyword-face fontified t) 150 151 (fontified t) 151 152 (face clojure-keyword-face fontified t) 152 157 (face clojure-keyword-face fontified t) 157 160 (fontified t)) . 2337) (undo-tree-id9 . -28)) nil (25520 29042 209016 7000) 0 nil])
+([nil nil ((#("     {:start [{:conditions [#(= (:mode @pars) \"hr-target\")]
+               :transition :hr-target}]
+      :hr-target [{:conditions [#(< (:hr-actual @pars) (:hr-target @pars))]
+                   :transition :increase-pw}
+" 0 6 (fontified t) 6 7 (face clojure-keyword-face fontified t) 7 12 (face clojure-keyword-face fontified t) 12 15 (fontified t) 15 16 (face clojure-keyword-face fontified t) 16 26 (face clojure-keyword-face fontified t) 26 33 (fontified t) 33 34 (face clojure-keyword-face fontified t) 34 38 (face clojure-keyword-face fontified t) 38 46 (fontified t) 46 57 (face font-lock-string-face fontified t) 57 59 (fontified t) 59 60 (fontified t) 60 75 (fontified t) 75 76 (face clojure-keyword-face fontified t) 76 86 (face clojure-keyword-face fontified t) 86 87 (fontified t) 87 88 (face clojure-keyword-face fontified t) 88 97 (face clojure-keyword-face fontified t) 97 106 (fontified t) 106 107 (face clojure-keyword-face fontified t) 107 116 (face clojure-keyword-face fontified t) 116 119 (fontified t) 119 120 (face clojure-keyword-face fontified t) 120 130 (face clojure-keyword-face fontified t) 130 137 (fontified t) 137 138 (face clojure-keyword-face fontified t) 138 147 (face clojure-keyword-face fontified t) 147 156 (fontified t) 156 157 (face clojure-keyword-face fontified t) 157 166 (face clojure-keyword-face fontified t) 166 195 (fontified t) 195 196 (face clojure-keyword-face fontified t) 196 206 (face clojure-keyword-face fontified t) 206 207 (fontified t) 207 208 (face clojure-keyword-face fontified t) 208 219 (face clojure-keyword-face fontified t) 219 221 (fontified t)) . 2337) (undo-tree-id8 . -59)) nil (25520 29042 209008 81000) 0 nil])
+([nil nil ((#("                  {:conditions [#(> (:hr-actual @pars) (:hr-target @pars))]
+                   :transition :decrease-pw}
+                  start-trans]
+     :increase-pw [{:conditions []
+" 0 19 (fontified t) 19 20 (face clojure-keyword-face fontified t) 20 30 (face clojure-keyword-face fontified t) 30 37 (fontified t) 37 38 (face clojure-keyword-face fontified t) 38 47 (face clojure-keyword-face fontified t) 47 51 (fontified t) 51 56 (fontified t) 56 57 (face clojure-keyword-face fontified t) 57 66 (face clojure-keyword-face fontified t) 66 75 (fontified t) 75 76 (fontified t) 76 95 (fontified t) 95 96 (face clojure-keyword-face fontified t) 96 106 (face clojure-keyword-face fontified t) 106 107 (fontified t) 107 108 (face clojure-keyword-face fontified t) 108 119 (face clojure-keyword-face fontified t) 119 157 (fontified t) 157 158 (face clojure-keyword-face fontified t) 158 169 (face clojure-keyword-face fontified t) 169 172 (fontified t) 172 173 (face clojure-keyword-face fontified t) 173 183 (face clojure-keyword-face fontified t) 183 187 (fontified t)) . 2337) (undo-tree-id7 . -75)) nil (25520 29042 208999 915000) 0 nil])
+([nil nil ((#("                    :on-success #(do (println @pars)
+                                     (update-hr pars 1))
+                    :transition :start}]
+     :decrease-pw [{:conditions []
+" 0 20 (fontified t) 20 21 (face clojure-keyword-face fontified t) 21 31 (face clojure-keyword-face fontified t) 31 34 (fontified t) 34 36 (face font-lock-keyword-face fontified t) 36 52 (fontified t) 52 53 (fontified t) 53 130 (fontified t) 130 131 (face clojure-keyword-face fontified t) 131 141 (face clojure-keyword-face fontified t) 141 142 (fontified t) 142 143 (face clojure-keyword-face fontified t) 143 148 (face clojure-keyword-face fontified t) 148 152 (fontified t) 152 156 (fontified t) 156 157 (face clojure-keyword-face fontified t) 157 168 (face clojure-keyword-face fontified t) 168 171 (fontified t) 171 172 (face clojure-keyword-face fontified t) 172 182 (face clojure-keyword-face fontified t) 182 186 (fontified t)) . 2337) (undo-tree-id6 . -52)) nil (25520 29042 208991 989000) 0 nil])
+([nil nil ((#("                    :on-success #(do (println @pars)
+                                     (update-hr pars -1))
+                    :transition :start}]
+      }))
+" 0 20 (fontified t) 20 21 (face clojure-keyword-face fontified t) 21 31 (face clojure-keyword-face fontified t) 31 34 (fontified t) 34 36 (face font-lock-keyword-face fontified t) 36 52 (fontified t) 52 53 (fontified t) 53 131 (fontified t) 131 132 (face clojure-keyword-face fontified t) 132 142 (face clojure-keyword-face fontified t) 142 143 (fontified t) 143 144 (face clojure-keyword-face fontified t) 144 149 (face clojure-keyword-face fontified t) 149 162 (fontified t)) . 2337)) nil (25520 29042 208984 489000) 0 nil])
+([nil nil ((#("  (let [pars (ref {:mode \"hr-target\" :hr-target 135 :hr-actual 144})
+" 0 3 (fontified t) 3 6 (face font-lock-keyword-face fontified t) 6 19 (fontified t) 19 20 (face clojure-keyword-face fontified t) 20 24 (face clojure-keyword-face fontified t) 24 25 (fontified t) 25 36 (face font-lock-string-face fontified t) 36 37 (fontified t) 37 38 (face clojure-keyword-face fontified t) 38 47 (face clojure-keyword-face fontified t) 47 52 (fontified t) 52 53 (face clojure-keyword-face fontified t) 53 62 (face clojure-keyword-face fontified t) 62 69 (fontified t)) . 2758)) nil (25520 29042 208980 396000) 0 nil])
+([nil nil ((#("        sm (stm/state-machine  (kettler-control pars) :start)]
+" 0 10 (fontified t) 10 11 (fontified t) 11 12 (fontified t) 12 15 (face font-lock-type-face fontified t) 15 54 (fontified t) 54 55 (face clojure-keyword-face fontified t) 55 60 (face clojure-keyword-face fontified t) 60 62 (fontified t) 62 63 (fontified t)) . 2758)) nil (25520 29042 208976 285000) 0 nil])
+([nil nil ((#("    (dotimes [_ 25]
+" 0 5 (fontified t) 5 8 (face font-lock-keyword-face fontified t) 8 12 (face font-lock-keyword-face fontified t) 12 19 (fontified t) 19 20 (fontified t)) . 2758) (undo-tree-id5 . -19)) nil (25520 29042 208971 415000) 0 nil])
+([nil nil ((#("            (stm/update-state sm)))
+" 0 13 (fontified t) 13 16 (face font-lock-type-face fontified t) 16 35 (fontified t) 35 36 (fontified t)) . 2758) (undo-tree-id4 . -35)) nil (25520 29042 208963 786000) 0 nil])
+([nil nil ((#("
+" 0 1 (fontified t)) . 2757) (undo-tree-id0 . -1) (undo-tree-id1 . -1) (undo-tree-id2 . -1) (undo-tree-id3 . -1)) nil (25520 29042 208955 804000) 0 nil])
+([nil nil ((#("
+" 0 1 (fontified t)) . 2757)) nil (25520 29042 208904 28000) 0 nil])
+([nil nil ((#("
+" 0 1 (fontified t)) . 2757)) nil (25520 29042 208899 602000) 0 nil])
+([nil nil ((#("
+" 0 1 (fontified t)) . 2757)) nil (25520 29042 208894 602000) 0 nil])
+([nil nil ((2759 . 2760)) nil (25520 29042 208882 250000) 0 nil])
+([nil nil ((#("[serial-killa.statemachine :as stm" 0 27 (fontified t) 27 28 (face clojure-keyword-face fontified t) 28 30 (face clojure-keyword-face fontified t) 30 34 (fontified t)) . 72) (t 25520 29042 577315 239000)) nil (25520 29073 444048 621000) 0 nil])
+([nil nil ((#("]" 0 1 (fontified t)) . 72)) nil (25520 29073 444042 973000) 0 nil])
+([nil nil ((#(" " 0 1 (fontified t)) . 59) (#(" " 0 1 (fontified t)) . 59) (#(" " 0 1 (fontified t)) . 59) (#(" " 0 1 (fontified t)) . 59) (#(" " 0 1 (fontified t)) . 59) (#(" " 0 1 (fontified t)) . 59) (#(" " 0 1 (fontified t)) . 59) (#(" " 0 1 (fontified t)) . 59) (#(" " 0 1 (fontified t)) . 59) (#(" " 0 1 (fontified t)) . 59) (#(" " 0 1 (fontified t)) . 59) (#(" " 0 1 (fontified t)) . 59) (#("
+" 0 1 (fontified t)) . 59)) nil (25520 29073 444024 344000) 0 nil])
+([nil nil ((#(";; TODO lerne wie hier async calls eingesetzt werden können + multifile
+" 0 3 (face font-lock-comment-delimiter-face fontified t) 3 72 (face font-lock-comment-face fontified t)) . 78) (undo-tree-id12 . -31) (undo-tree-id13 . -31) 109 (t 25520 29073 456738 990000)) nil (25520 29093 144536 369000) 0 nil])
+([nil nil ((#("
+" 0 1 (fontified t)) . 77)) nil (25520 29093 144502 648000) 0 nil])
+([nil nil ((#("
+" 0 1 (fontified t)) . 77)) nil (25520 29093 144489 463000) 0 nil])
+([nil nil ((#(")" 0 1 (fontified t help-echo cider--help-echo cider-locals nil)) . 2638) (t 25520 29093 156401 839000)) nil (25520 29161 451015 76000) 0 nil])
+([nil nil ((#(")" 0 1 (fontified t cider-locals ("args"))) . 2637)) nil (25520 29161 451008 58000) 0 nil])
+([nil current ((2636 . 2637)) nil (25520 29161 450995 76000) 0 nil])
+nil
