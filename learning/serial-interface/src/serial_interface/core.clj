@@ -73,11 +73,6 @@
     (set-power port new_pow_setpoint)))
 
 
-(defn update-hr [pars val]
-  (dosync (ref-set pars {:mode (:mode @pars) :hr-target (:hr-target @pars)
-                         :hr-actual (+ val (:hr-actual @pars))}))) 
-
-
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
