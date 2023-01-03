@@ -102,7 +102,7 @@
                             :energy 0}))
   (loop [n 0]
     (update-kettler kettler-state sim-pars)
-    (spit "hr2.csv" (clojure.string/join [(state-string @kettler-state) "\n"]) :append true)
+    (spit "hr1.csv" (clojure.string/join [(state-string @kettler-state) "\n"]) :append true)
     (if-not (< n 2500)
       (println (state-string @kettler-state))
       (recur (inc n))))
@@ -110,7 +110,7 @@
   (loop [n 0
          buff {:sum 0 :prev-dev 0 :response 0}]
     (update-kettler kettler-state sim-pars)
-    (spit "hr2.csv" (clojure.string/join [(state-string @kettler-state) "\n"]) :append true)
+    (spit "hr1.csv" (clojure.string/join [(state-string @kettler-state) "\n"]) :append true)
     (if-not (< n 2500)
       (println (state-string @kettler-state))
       (recur (inc n) (update-power-pid kettler-state buff))))
