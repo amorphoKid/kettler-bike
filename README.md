@@ -1,7 +1,6 @@
 # kettler-bike
 ## Architecture Sketch
 ![Alt text](./kettler.drawio.svg) 
-<img src="./kettler.drawio.svg">
 ### Kettler Ergometer KX1
 Ergometer Bike which has a well documented Serial Interface
 ### RS232 

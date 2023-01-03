@@ -1,5 +1,5 @@
 (undo-tree-save-format-version . 1)
-"d67d3a856eac4c07ad69eaa6d945bdb2ef7f7177"
+"d29b30fa23120a6535ea4f269f0c218236766836"
 [nil nil nil nil (25524 44671 292106 564000) 0 nil]
 ([nil nil ((75 . 76) (nil rear-nonsticky nil 74 . 75) (nil fontified nil 39 . 75) (39 . 75) (#("i" 0 1 (fontified t)) . -39) (undo-tree-id2 . -1) 40 (39 . 40) (17 . 18) (522 . 523) (448 . 449) (321 . 322) (230 . 231) (158 . 159) (98 . 99) (71 . 72) (t 25524 44531 919620 186000)) nil (25524 44671 292093 231000) 0 nil])
 ([nil nil ((nil rear-nonsticky nil 74 . 75) (nil fontified nil 52 . 75) (52 . 75) 51) nil (25524 44671 292050 139000) 0 nil])
@@ -26,8 +26,8 @@
 ([nil nil ((#("s" 0 1 (fontified t)) . 74)) nil (25524 44671 291874 790000) 0 nil])
 ([nil nil ((#("v" 0 1 (fontified t)) . 74)) nil (25524 44671 291866 846000) 0 nil])
 ([nil nil ((#("g" 0 1 (fontified t)) . 74)) nil (25524 44671 291858 957000) 0 nil])
-([nil nil ((#("." 0 1 (fontified t face markdown-link-title-face invisible markdown-markup font-lock-multiline t)) . 51) (undo-tree-id0 . -1) (undo-tree-id1 . -1)) nil (25524 44671 291848 828000) 0 nil])
-([nil nil ((#("\"" 0 1 (fontified t face markdown-link-title-face invisible markdown-markup font-lock-multiline t)) . 51)) nil (25524 44671 291779 292000) 0 nil])
+([nil nil ((#("." 0 1 (font-lock-multiline t invisible markdown-markup face markdown-link-title-face fontified t)) . 51) (undo-tree-id0 . -1) (undo-tree-id1 . -1)) nil (25524 44671 291848 828000) 0 nil])
+([nil nil ((#("\"" 0 1 (font-lock-multiline t invisible markdown-markup face markdown-link-title-face fontified t)) . 51)) nil (25524 44671 291779 292000) 0 nil])
 ([nil nil ((51 . 52)) nil (25524 44671 291760 51000) 0 nil])
 ([nil nil ((134 . 135) (t 25524 44671 297456 629000)) nil (25524 44751 124045 417000) 0 nil])
 ([nil nil ((134 . 144)) nil (25524 44751 124032 658000) 0 nil])
@@ -47,10 +47,12 @@
 ([nil nil ((#("I" 0 1 (fontified t)) . -177) (undo-tree-id2 . -1) (undo-tree-id3 . -1) 178) nil (25524 44751 123332 909000) 0 nil])
 ([nil nil ((177 . 194)) nil (25524 44751 123297 391000) 0 nil])
 ([nil nil ((#(" " 0 1 (fontified t)) . -193) (undo-tree-id0 . -1) (undo-tree-id1 . -1) 194) nil (25524 44751 123272 688000) 0 nil])
-([nil nil ((51 . 53) (51 . 52) (#("x" 0 1 (fontified t face markdown-link-title-face invisible markdown-markup font-lock-multiline t)) . -51) (undo-tree-id2 . -1) (undo-tree-id3 . -1) 52 (51 . 52) (75 . 76) (t 25524 44751 136219 728000)) nil (25524 44853 432945 698000) 0 nil])
-([nil nil ((#("x" 0 1 (fontified t keymap (keymap (mouse-2 . markdown-follow-thing-at-point) (follow-link . mouse-face)) face markdown-url-face invisible markdown-markup mouse-face markdown-highlight-face font-lock-multiline t)) . 51)) nil (25524 44853 432902 643000) 0 nil])
-([nil nil ((#("x" 0 1 (fontified t keymap (keymap (mouse-2 . markdown-follow-thing-at-point) (follow-link . mouse-face)) face markdown-url-face invisible markdown-markup mouse-face markdown-highlight-face font-lock-multiline t)) . 51)) nil (25524 44853 432890 180000) 0 nil])
-([nil nil ((#("x" 0 1 (fontified t face markdown-link-title-face invisible markdown-markup font-lock-multiline t)) . 51) (undo-tree-id1 . 1)) nil (25524 44853 432875 588000) 0 nil])
-([nil nil ((#("\"" 0 1 (fontified t face markdown-link-title-face invisible markdown-markup font-lock-multiline t)) . 51) (undo-tree-id0 . 1)) nil (25524 44853 432849 662000) 0 nil])
-([nil current ((#("\"" 0 1 (fontified t)) . 71)) nil (25524 44853 432763 330000) 0 nil])
+([nil nil ((51 . 53) (51 . 52) (#("x" 0 1 (font-lock-multiline t invisible markdown-markup face markdown-link-title-face fontified t)) . -51) (undo-tree-id2 . -1) (undo-tree-id3 . -1) 52 (51 . 52) (75 . 76) (t 25524 44751 136219 728000)) nil (25524 44853 432945 698000) 0 nil])
+([nil nil ((#("x" 0 1 (font-lock-multiline t mouse-face markdown-highlight-face invisible markdown-markup face markdown-url-face keymap (keymap (mouse-2 . markdown-follow-thing-at-point) (follow-link . mouse-face)) fontified t)) . 51)) nil (25524 44853 432902 643000) 0 nil])
+([nil nil ((#("x" 0 1 (font-lock-multiline t mouse-face markdown-highlight-face invisible markdown-markup face markdown-url-face keymap (keymap (mouse-2 . markdown-follow-thing-at-point) (follow-link . mouse-face)) fontified t)) . 51)) nil (25524 44853 432890 180000) 0 nil])
+([nil nil ((#("x" 0 1 (font-lock-multiline t invisible markdown-markup face markdown-link-title-face fontified t)) . 51) (undo-tree-id1 . 1)) nil (25524 44853 432875 588000) 0 nil])
+([nil nil ((#("\"" 0 1 (font-lock-multiline t invisible markdown-markup face markdown-link-title-face fontified t)) . 51) (undo-tree-id0 . 1)) nil (25524 44853 432849 662000) 0 nil])
+([nil nil ((#("\"" 0 1 (fontified t)) . 71)) nil (25524 44853 432763 330000) 0 nil])
+([nil current ((#("<img src=\"./kettler.drawio.svg\">
+" 0 1 (fontified t face markdown-html-tag-delimiter-face) 1 4 (fontified t face markdown-html-tag-name-face) 4 5 (fontified t) 5 8 (fontified t face markdown-html-attr-name-face) 8 9 (fontified t face markdown-html-tag-delimiter-face) 9 31 (fontified t face markdown-html-attr-value-face) 31 32 (fontified t face markdown-html-tag-delimiter-face) 32 33 (fontified t)) . 74) (t 25524 44853 444636 813000)) nil (25524 45044 138230 857000) 0 nil])
 nil
