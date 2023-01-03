@@ -2,6 +2,7 @@
 ## Architecture Sketch
 ![Alt text]("./kettler.drawio.svg") <img src="./kettler.drawio.svg">
 ### Kettler Ergometer KX1
+Ergometer Bike which has a well documented Serial Interface
 ### RS232 
 Connected to a Raspberry Pi via RS232 Interface
 ### Mock Up 
