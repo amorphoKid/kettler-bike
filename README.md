@@ -1,2 +1,3 @@
 # kettler-bike
-Architecture Sketche <img src="./kettler.drawio.svg">
+## Architecture Sketch
+<img src="./kettler.drawio.svg">
