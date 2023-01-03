@@ -1,4 +1,11 @@
 # kettler-bike
+My first non trivial Clojure project.
+Aim is to learn Clojure and to implement a control software for my Kettler Ergometer:
+- Control heart rate measured by Polar HR Belt and Polar Reciever by setting power
+- Manual exercise power setting
+- Time controled profiles (e.g. stepwise increase of power)
+- Rest Api
+
 ## Architecture Sketch
 ![Alt text](./kettler.drawio.svg) 
 ### Kettler Ergometer KX1
