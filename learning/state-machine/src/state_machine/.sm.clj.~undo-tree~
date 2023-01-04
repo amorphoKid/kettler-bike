@@ -1,0 +1,9 @@
+(undo-tree-save-format-version . 1)
+"b9596a9a433cab40e5fa4cc1b58d6c03144c6b78"
+[nil nil nil nil (25525 65323 82912 361000) 0 nil]
+([nil nil ((#("mockup" 0 6 (fontified t face font-lock-type-face)) . 5) (t 25525 65272 52610 505000)) nil (25525 65323 82906 842000) 0 nil])
+([nil nil ((5 . 6)) nil (25525 65323 82901 750000) 0 nil])
+([nil nil ((6 . 17)) nil (25525 65323 82897 361000) 0 nil])
+([nil nil ((#("c" 0 1 (fontified t face font-lock-type-face)) . -18) (undo-tree-id0 . -1) (undo-tree-id1 . -1) (#("o" 0 1 (fontified t face font-lock-type-face)) . -19) (undo-tree-id2 . -1) (undo-tree-id3 . -1) (#("r" 0 1 (fontified t face font-lock-type-face)) . -20) (undo-tree-id4 . -1) (undo-tree-id5 . -1) (#("e" 0 1 (fontified t face font-lock-type-face)) . -21) (undo-tree-id6 . -1) (undo-tree-id7 . -1) 22) nil (25525 65323 82888 602000) 0 nil])
+([nil current ((18 . 24)) nil (25525 65323 82816 104000) 0 nil])
+nil

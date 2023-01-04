@@ -1,4 +1,5 @@
 (ns state-machine.core
+  (:require [state-machine.mockup :as mu])
   (:gen-class))
 
 (defn state-machine [transition-table initial-state]
@@ -28,6 +29,27 @@
           (on-success))
         (dosync (ref-set state transition))))))
 
+(def sim-pars {
+               :time-inc 0.1
+               :relax-time 7
+               :max-pulse 170
+               :ctrl-treshold 10
+               :pulse-perf-drift 0.08
+               :max-drift 20
+               :rest-pulse 70})
+
+;; labels taken from serial :pulse :rpm :speed :dist :req-power :energy :time :power
+(def kettler-state (atom {
+                          :pulse 70
+                          :pulse-target 145
+                          :power 80
+                          :req-power 80
+                          :time 0 
+                          :rpm 100
+                          :speed 10
+                          :dist 0
+                          :energy 0}))
+
 (defn kettler-control [pars]
   {:start [{:conditions [#(= (:mode @pars) "hr-target")]
             :transition :hr-target}
@@ -39,17 +61,19 @@
    
    :pw-target [{:conditions []
                 :on-success #(do (println "pw-target")
-                                 (println @pars))
+                                 (println @kettler-state))
                 :transition :update-power}]
    
    :hr-target [{:conditions []
-                :on-success #(do (println "hr-target")
-                                 (println @pars))
+                :on-success #(do (mu/update-kettler kettler-state sim-pars)
+                                  (println "hr-target")
+                                  (println @kettler-state))
                 :transition :pid-power}]
    
    :pid-power [{:conditions []
                 :on-success #(do (println "pid-power")
                                  (println @pars))
+                                 
                 :transition :start}]
    
    :update-power [{:conditions []
@@ -63,7 +87,7 @@
   (dotimes [_ 40]
     (Thread/sleep 1000)
     (update-state sm)))
-
+  
 (defn -main
   "demo loop for state-machine"
   [& args]
