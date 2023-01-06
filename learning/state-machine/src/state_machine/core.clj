@@ -1,7 +1,8 @@
 (ns state-machine.core
   (:require [mockup :as mu])
   (:gen-class))
-
+;; implementation taken from nakkaya.com/2010/06/22/finite-state-machine-implementation-in-clojure/ 
+;; used with permission
 (defn state-machine [transition-table initial-state]
   (ref initial-state :meta transition-table))
 

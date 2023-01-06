@@ -1,5 +1,5 @@
 (undo-tree-save-format-version . 1)
-"131946204b1c0d1610ef9581c3483a5481faec1e"
+"da7cd12d03fc11b77fd0339348419a3e52d3dd12"
 [nil nil nil nil (25525 61308 552318 854000) 0 nil]
 ([nil nil ((nil rear-nonsticky nil 40 . 41) (#("
 " 0 1 (fontified nil)) . -922) (40 . 923) (t 25524 42773 339400 72000)) nil (25525 61308 552313 687000) 0 nil])
@@ -1442,5 +1442,9 @@ nil
 ([nil nil ((#("ü" 0 1 (help-echo cider--help-echo fontified t cider-locals ("pars" "state" "pid" "pars"))) . -2658) (undo-tree-id297 . -1) 2659) nil (25527 33895 81534 61000) 0 nil])
 ([nil nil ((2658 . 2660)) nil (25527 33895 81501 525000) 0 nil])
 ([nil nil ((2660 . 2679)) nil (25527 33895 81496 654000) 0 nil])
-([nil current ((2679 . 2683)) nil (25527 33895 81484 340000) 0 nil])
+([nil nil ((2679 . 2683)) nil (25527 33895 81484 340000) 0 nil])
+([nil nil ((#(":" 0 1 (face font-lock-comment-face fontified t)) . -98) (undo-tree-id0 . -1) 99 (98 . 99) (#("p" 0 1 (face font-lock-comment-face fontified t)) . -98) (undo-tree-id1 . -1) 99 (98 . 99) (97 . 98) (#(" " 0 1 (face font-lock-comment-face fontified t)) . -97) (undo-tree-id2 . -1) (#("" 0 1 (face font-lock-comment-face fontified t)) . -98) (undo-tree-id3 . -1) 99 (98 . 99) (93 . 98) (72 . 93) (#("C" 0 1 (face font-lock-comment-face fontified t)) . -72) (undo-tree-id4 . -1) 73 (69 . 73) (t 25528 17117 577997 263000)) nil (25528 35746 886087 301000) 0 nil])
+([nil nil ((97 . 98) (t 25528 35747 684423 214000)) nil (25528 35812 536832 92000) 0 nil])
+([nil nil ((98 . 99)) nil (25528 35812 536818 333000) 0 nil])
+([nil current ((#(":" 0 1 (fontified t face font-lock-comment-face)) . -98) (undo-tree-id0 . -1) (undo-tree-id1 . -1) 99) nil (25528 35812 536792 700000) 0 nil])
 nil
