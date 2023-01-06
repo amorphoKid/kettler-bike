@@ -49,10 +49,16 @@
     (swap! state assoc-in [:time] (+ cur-time (:time-inc pars)))))
 
 (defn set-power
-  "changes power by dw"
+  "changes power"
   [state power]
-  (swap! state assoc-in [:req-power] power)
-  (swap! state assoc-in [:power] power))
+  (let [p (max power 0)]
+    (swap! state assoc-in [:req-power] p)
+    (swap! state assoc-in [:power] p)))
+
+(defn set-pulse-target
+  "changes target-pulse"
+  [state hr]
+  (swap! state assoc-in [:pulse-target] hr))
 
 (defn change-power
   "changes power by dw"
@@ -70,7 +76,7 @@
         cur-pulse (:pulse @state)
         target-pulse (:pulse-target @state)
         dev (- target-pulse cur-pulse)
-        pid-val (pid dev prev-dev sum [1.70 0.02 -1.4])]
+        pid-val (pid dev prev-dev sum [1.70 0.03 -1.4])]
     (set-power state (:response pid-val))
     pid-val))
     

@@ -1,5 +1,5 @@
 (ns state-machine.core
-  (:require [state-machine.mockup :as mu])
+  (:require [mockup :as mu])
   (:gen-class))
 
 (defn state-machine [transition-table initial-state]
@@ -50,6 +50,21 @@
                           :dist 0
                           :energy 0}))
 
+
+(def demo-pars (ref 
+                {
+                 :mode "hr-target"
+                 :pulse-target 135
+                 :buf {:sum 0 :prev-dev 0 :response 0}
+                 }))
+
+(defn update-pars [pars key val] 
+  (dosync (ref-set pars (update @pars key (fn [x] val))))) 
+
+(defn update-power [state pars]
+  (let [pid (mu/update-power-pid state (:buf @pars))]
+    (update-pars pars :buf pid)))
+
 (defn kettler-control [pars]
   {:start [{:conditions [#(= (:mode @pars) "hr-target")]
             :transition :hr-target}
@@ -60,44 +75,47 @@
             :transition :start}]
    
    :pw-target [{:conditions []
-                :on-success #(do (println "pw-target")
-                                 (println @kettler-state))
                 :transition :update-power}]
    
    :hr-target [{:conditions []
-                :on-success #(do (mu/update-kettler kettler-state sim-pars)
-                                  (println "hr-target")
-                                  (println @kettler-state))
+                :on-success #(mu/update-kettler kettler-state sim-pars)
                 :transition :pid-power}]
    
    :pid-power [{:conditions []
-                :on-success #(do (println "pid-power")
-                                 (println @pars))
-                                 
+                :on-success #(update-power kettler-state pars)
                 :transition :start}]
    
    :update-power [{:conditions []
-                   :on-success #(do (println "update-power")
-                                    (println @pars))
                    :transition :start}]
    })
-
-(defn long-thread
-  [sm]
-  (dotimes [_ 40]
-    (Thread/sleep 1000)
-    (update-state sm)))
+(defn statemachine-thread
+  [control pars start-state]
+  (let [sm (state-machine (control pars) start-state)]
+    (while (not (= "exit" (:mode @pars)))
+      (do
+        (Thread/sleep 100)
+        (update-state sm)))
+  (println "exit...")))
   
+(defn set-pw-mode [power]
+  (dosync (ref-set demo-pars {:mode "pw-target"  :pw-target power})))
+
+(defn set-hr-mode [hr-target]
+  (mu/set-pulse-target kettler-state hr-target)
+  (dosync (ref-set demo-pars 
+                   {
+                    :mode "hr-target"
+                    :pulse-target hr-target
+                    :buf {:sum 0 :prev-dev 0 :response 0}
+                    })))
+
+(defn stop-machine []
+  (dosync (ref-set demo-pars {:mode "exit"  :pw-target 90})))
+
+
 (defn -main
   "demo loop for state-machine"
   [& args]
-  
-  (def demo-pars (ref 
-    {
-     :mode "hr-target"
-     :pulse-target 135 
-    }))
-  (future (long-thread (state-machine  (kettler-control demo-pars) :start)))
-  (Thread/sleep 20000) 
-  (dosync (ref-set demo-pars {:mode "pw-target"  :pw-target 90})) 
+  (set-hr-mode 135)
+  (future (statemachine-thread kettler-control demo-pars :start))
  ) 
