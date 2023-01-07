@@ -76,7 +76,7 @@
         cur-pulse (:pulse @state)
         target-pulse (:pulse-target @state)
         dev (- target-pulse cur-pulse)
-        pid-val (pid dev prev-dev sum [1.70 0.03 -1.4])]
+        pid-val (pid dev prev-dev sum [1.70 0.03 1.4])]
     (set-power state (:response pid-val))
     pid-val))
     

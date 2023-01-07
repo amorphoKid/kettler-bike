@@ -1,5 +1,6 @@
 (ns state-machine.core
-  (:require [mockup :as mu])
+  (:require [mockup :as mu]
+             [pid :as pid])
   (:gen-class))
 ;; implementation taken from nakkaya.com/2010/06/22/finite-state-machine-implementation-in-clojure/ 
 ;; used with permission
@@ -30,34 +31,6 @@
           (on-success))
         (dosync (ref-set state transition))))))
 
-(def sim-pars {
-               :time-inc 0.1
-               :relax-time 7
-               :max-pulse 170
-               :ctrl-treshold 10
-               :pulse-perf-drift 0.08
-               :max-drift 20
-               :rest-pulse 70})
-
-;; labels taken from serial :pulse :rpm :speed :dist :req-power :energy :time :power
-(def kettler-state (atom {
-                          :pulse 70
-                          :pulse-target 145
-                          :power 80
-                          :req-power 80
-                          :time 0 
-                          :rpm 100
-                          :speed 10
-                          :dist 0
-                          :energy 0}))
-
-
-(def demo-pars (ref 
-                {
-                 :mode "hr-target"
-                 :pulse-target 135
-                 :buf {:sum 0 :prev-dev 0 :response 0}
-                 }))
 
 (defn update-pars [pars key val] 
   (dosync (ref-set pars (update @pars key (fn [x] val))))) 
@@ -66,6 +39,7 @@
   (let [pid (mu/update-power-pid state (:buf @pars))]
     (update-pars pars :buf pid)))
 
+  
 (defn kettler-control [pars]
   {:start [{:conditions [#(= (:mode @pars) "hr-target")]
             :transition :hr-target}
@@ -79,16 +53,19 @@
                 :transition :update-power}]
    
    :hr-target [{:conditions []
-                :on-success #(mu/update-kettler kettler-state sim-pars)
                 :transition :pid-power}]
    
    :pid-power [{:conditions []
-                :on-success #(update-power kettler-state pars)
+                :on-success #(let [cur-pulse (:pulse @kettler-state)
+                                   target-pulse (:pulse-target @kettler-state)
+                                   new-power (my-pid target-pulse cur-pulse)]
+                                   (mu/set-power kettler-state new-power))
                 :transition :start}]
    
    :update-power [{:conditions []
                    :transition :start}]
    })
+
 (defn statemachine-thread
   [control pars start-state]
   (let [sm (state-machine (control pars) start-state)]
@@ -97,26 +74,72 @@
         (Thread/sleep 100)
         (update-state sm)))
   (println "exit...")))
-  
-(defn set-pw-mode [power]
-  (dosync (ref-set demo-pars {:mode "pw-target"  :pw-target power})))
 
-(defn set-hr-mode [hr-target]
+(defn write-to-file-thread
+  [pars]
+  (while (not (= "exit" (:mode @pars)))
+    (do
+      (Thread/sleep 2000)
+    (spit "hr1.csv" (clojure.string/join [(mu/state-string @kettler-state) "\n"]) :append true)))
+  (println "exit..."))
+
+(defn mockup-thread
+  [pars]
+  (while (not (= "exit" (:mode @pars)))
+    (do
+      (Thread/sleep 100)
+      (mu/update-kettler kettler-state sim-pars)))      
+  (println "exit..."))
+
+(defn set-pw-mode [power pars]
+  (dosync (ref-set pars {:mode "pw-target"  :pw-target power})))
+
+(defn set-hr-mode [hr-target pars]
   (mu/set-pulse-target kettler-state hr-target)
-  (dosync (ref-set demo-pars 
+  (dosync (ref-set pars 
                    {
                     :mode "hr-target"
                     :pulse-target hr-target
-                    :buf {:sum 0 :prev-dev 0 :response 0}
                     })))
 
-(defn stop-machine []
-  (dosync (ref-set demo-pars {:mode "exit"  :pw-target 90})))
+(defn stop-machine [pars]
+  (dosync (ref-set pars {:mode "exit"  :pw-target 90})))
 
 
 (defn -main
   "demo loop for state-machine"
   [& args]
-  (set-hr-mode 135)
+  (def sim-pars {
+                 :time-inc 0.1
+                 :relax-time 7
+                 :max-pulse 170
+                 :ctrl-treshold 10
+                 :pulse-perf-drift 0.08
+                 :max-drift 20
+                 :rest-pulse 70})
+
+  ;; labels taken from serial :pulse :rpm :speed :dist :req-power :energy :time :power
+  (def kettler-state (atom {
+                            :pulse 70
+                            :pulse-target 145
+                            :power 80
+                            :req-power 80
+                            :time 0 
+                            :rpm 100
+                            :speed 10
+                            :dist 0
+                            :energy 0}))
+
+
+  (def demo-pars (ref 
+                  {
+                   :mode "hr-target"
+                   :pulse-target 135
+                   }))
+  (def my-buf (ref {:dev-sum 0 :prev-dev 0})) 
+  (def my-pid (pid/get-pid-control my-buf 2.70 0.03 1.4))
+  (set-hr-mode 135 demo-pars)
+  (future (mockup-thread demo-pars))
   (future (statemachine-thread kettler-control demo-pars :start))
+  (future (write-to-file-thread demo-pars))
  ) 
