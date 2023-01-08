@@ -1,0 +1,11 @@
+(undo-tree-save-format-version . 1)
+"625ff2b1b898dd6cc011a3dc79ea5c9d5c757a23"
+[nil nil nil nil (25529 55992 316055 316000) 0 nil]
+([nil nil ((#("." 0 1 (fontified t face font-lock-type-face)) . 8) (t 25529 55854 56513 509000)) nil (25529 55992 316032 408000) 0 nil])
+([nil nil ((#("c" 0 1 (fontified t face font-lock-type-face)) . 8)) nil (25529 55992 316010 338000) 0 nil])
+([nil nil ((#("o" 0 1 (fontified t face font-lock-type-face)) . 8)) nil (25529 55992 315992 598000) 0 nil])
+([nil nil ((#("r" 0 1 (fontified t face font-lock-type-face)) . 8)) nil (25529 55992 315973 252000) 0 nil])
+([nil nil ((#("e" 0 1 (fontified t face font-lock-type-face)) . 8)) nil (25529 55992 315930 230000) 0 nil])
+([nil nil ((#("target" 0 6 (fontified t help-echo cider--help-echo cider-locals ("current" "target" "kd" "ki" "kp" "buf-ref" "new-sum" "diff" "prev-dev" "dev-sum" "dev"))) . 405) (t 25529 55992 333199 186000)) nil (25529 57483 137816 277000) 0 nil])
+([nil current ((405 . 408)) nil (25529 57483 137782 474000) 0 nil])
+nil
