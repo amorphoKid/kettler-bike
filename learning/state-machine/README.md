@@ -1,5 +1,5 @@
 # state-machine
-
+```mermaid
 graph LR
    DF((DF))--0/0-->E((E))
    E((E))--0/0-->C((C))
@@ -11,7 +11,7 @@ graph LR
    B((B))--0/0-->C((C))
    B((B))--1/0-->A((A))
    C((C))--1/0-->DF((DF))
-   
+```
    
  ![Alt text](./state-machine-hr-control.svg)
  ![Alt text](./pid-response.svg)
