@@ -7,6 +7,29 @@
 (defn state-machine [transition-table initial-state]
   (ref initial-state :meta transition-table))
 
+(def my-buf (ref {:dev-sum 0 :prev-dev 0})) 
+(def my-pid (pid/get-pid-control my-buf 2.70 0.03 1.4))
+(def sim-pars {
+                :time-inc 0.1
+                :relax-time 7
+                :max-pulse 170
+                :ctrl-treshold 10
+                :pulse-perf-drift 0.08
+                :max-drift 20
+                :rest-pulse 70})
+
+
+;; labels taken from serial :pulse :rpm :speed :dist :req-power :energy :time :power
+(def kettler-state (atom {
+                        :pulse 70
+                        :pulse-target 145
+                        :power 80
+                        :req-power 80
+                        :time 0 
+                        :rpm 100
+                        :speed 10
+                        :dist 0
+                        :energy 0}))
 (defn find-first [pred s]
   (first (filter pred s)))
 
@@ -109,26 +132,6 @@
 (defn -main
   "demo loop for state-machine"
   [& args]
-  (def sim-pars {
-                 :time-inc 0.1
-                 :relax-time 7
-                 :max-pulse 170
-                 :ctrl-treshold 10
-                 :pulse-perf-drift 0.08
-                 :max-drift 20
-                 :rest-pulse 70})
-
-  ;; labels taken from serial :pulse :rpm :speed :dist :req-power :energy :time :power
-  (def kettler-state (atom {
-                            :pulse 70
-                            :pulse-target 145
-                            :power 80
-                            :req-power 80
-                            :time 0 
-                            :rpm 100
-                            :speed 10
-                            :dist 0
-                            :energy 0}))
 
 
   (def demo-pars (ref 
@@ -136,10 +139,9 @@
                    :mode "hr-target"
                    :pulse-target 135
                    }))
-  (def my-buf (ref {:dev-sum 0 :prev-dev 0})) 
-  (def my-pid (pid/get-pid-control my-buf 2.70 0.03 1.4))
   (set-hr-mode 135 demo-pars)
   (future (mockup-thread demo-pars))
   (future (statemachine-thread kettler-control demo-pars :start))
   (future (write-to-file-thread demo-pars))
  ) 
+
