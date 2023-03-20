@@ -7,7 +7,7 @@
 (defn state-machine [transition-table initial-state]
   (ref initial-state :meta transition-table))
 
-(def my-buf (ref {:dev-sum 0 :prev-dev 0})) 
+(def my-buf (ref {:dev-sum 0 :prev-dev 0}))
 (def my-pid (pid/get-pid-control my-buf 2.70 0.03 1.4))
 (def sim-pars {
                 :time-inc 0.1
@@ -25,7 +25,7 @@
                         :pulse-target 145
                         :power 80
                         :req-power 80
-                        :time 0 
+                        :time 0
                         :rpm 100
                         :speed 10
                         :dist 0
@@ -40,7 +40,7 @@
 
 (defn first-valid-transition [ts]
   (find-first #(= (second %) true)
-              (map #(let [{conds :conditions 
+              (map #(let [{conds :conditions
                            transition :transition
                            on-success :on-success} %]
                       [transition (switch-state? conds) on-success]) ts)))
@@ -49,20 +49,20 @@
   (let [transition-list ((meta state) @state)
         [transition _ on-success] (first-valid-transition transition-list)]
     (if-not (nil? transition)
-      (do 
+      (do
         (if-not (nil? on-success)
           (on-success))
         (dosync (ref-set state transition))))))
 
 
-(defn update-pars [pars key val] 
-  (dosync (ref-set pars (update @pars key (fn [x] val))))) 
+(defn update-pars [pars key val]
+  (dosync (ref-set pars (update @pars key (fn [x] val)))))
 
 (defn update-power [state pars]
   (let [pid (mu/update-power-pid state (:buf @pars))]
     (update-pars pars :buf pid)))
 
-  
+
 (defn kettler-control [pars]
   {:start [{:conditions [#(= (:mode @pars) "hr-target")]
             :transition :hr-target}
@@ -71,20 +71,20 @@
            {:conditions []
             :on-success #(println "start")
             :transition :start}]
-   
+
    :pw-target [{:conditions []
                 :transition :update-power}]
-   
+
    :hr-target [{:conditions []
                 :transition :pid-power}]
-   
+
    :pid-power [{:conditions []
                 :on-success #(let [cur-pulse (:pulse @kettler-state)
                                    target-pulse (:pulse-target @kettler-state)
                                    new-power (my-pid target-pulse cur-pulse)]
                                    (mu/set-power kettler-state new-power))
                 :transition :start}]
-   
+
    :update-power [{:conditions []
                    :transition :start}]
    })
@@ -111,7 +111,7 @@
   (while (not (= "exit" (:mode @pars)))
     (do
       (Thread/sleep 100)
-      (mu/update-kettler kettler-state sim-pars)))      
+      (mu/update-kettler kettler-state sim-pars)))
   (println "exit..."))
 
 (defn set-pw-mode [power pars]
@@ -119,7 +119,7 @@
 
 (defn set-hr-mode [hr-target pars]
   (mu/set-pulse-target kettler-state hr-target)
-  (dosync (ref-set pars 
+  (dosync (ref-set pars
                    {
                     :mode "hr-target"
                     :pulse-target hr-target
@@ -134,7 +134,7 @@
   [& args]
 
 
-  (def demo-pars (ref 
+  (def demo-pars (ref
                   {
                    :mode "hr-target"
                    :pulse-target 135
@@ -143,5 +143,5 @@
   (future (mockup-thread demo-pars))
   (future (statemachine-thread kettler-control demo-pars :start))
   (future (write-to-file-thread demo-pars))
- ) 
+ )
 
