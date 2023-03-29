@@ -142,7 +142,6 @@
   "demo loop for state-machine"
   [& args]
 
-
   (def demo-pars (ref
                   {
                    :mode "hr-target"
@@ -153,4 +152,3 @@
   (future (statemachine-thread kettler-control demo-pars :start))
   (future (write-to-file-thread demo-pars))
  )
-
