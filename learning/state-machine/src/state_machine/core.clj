@@ -18,6 +18,15 @@
                 :max-drift 20
                 :rest-pulse 70})
 
+(defn get-power-from-time
+  [profile t]
+  (first
+   (filter #(<= (first %) t) profile)))
+
+(defn get-time-profiler
+  [profile]
+  (partial get-power-from-time profile))
+;;(def power-profile  (get-time-profiler[[10 100] [0 200]]) )
 
 ;; labels taken from serial :pulse :rpm :speed :dist :req-power :energy :time :power
 (def kettler-state (atom {

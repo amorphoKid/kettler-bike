@@ -13,3 +13,5 @@ pom.xml.asc
 .nrepl-port
 .cpcache/
 .README.md.~undo-tree~
+/learning/state-machine/src/state_machine/*.clj#
+/learning/state-machine/src/state_machine/time-power.clj~
