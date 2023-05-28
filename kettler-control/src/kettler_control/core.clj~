@@ -1,0 +1,7 @@
+(ns kettler-control.core
+  (:require [kettler-control.time-to-value :as ttv]))
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (println (ttv.time-to-value 12)))

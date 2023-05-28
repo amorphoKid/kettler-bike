@@ -1,0 +1,17 @@
+(undo-tree-save-format-version . 1)
+"d06502b7daa5bb9990bbe3cdec64eb356e08a543"
+[nil nil nil nil (25715 54244 322830 731000) 0 nil]
+([nil nil ((#("t" 0 1 (cider-locals ("pair-seq") help-echo cider--help-echo fontified t)) . 337) (t 25715 53992 716787 585000)) nil (25715 54244 322826 380000) 0 nil])
+([nil nil ((#("u" 0 1 (cider-locals ("pair-seq") help-echo cider--help-echo fontified t)) . 337)) nil (25715 54244 322821 917000) 0 nil])
+([nil nil ((#("p" 0 1 (cider-locals ("pair-seq") help-echo cider--help-echo fontified t)) . 337)) nil (25715 54244 322817 991000) 0 nil])
+([nil nil ((#("l" 0 1 (cider-locals ("pair-seq") help-echo cider--help-echo fontified t)) . 337)) nil (25715 54244 322814 65000) 0 nil])
+([nil nil ((#("e" 0 1 (cider-locals ("pair-seq") help-echo cider--help-echo fontified t)) . 337)) nil (25715 54244 322810 121000) 0 nil])
+([nil nil ((#("s" 0 1 (cider-locals ("pair-seq") help-echo cider--help-echo fontified t)) . 337)) nil (25715 54244 322805 824000) 0 nil])
+([nil nil ((nil rear-nonsticky nil 338 . 339) (nil fontified nil 338 . 339) (338 . 339) 337) nil (25715 54244 322801 158000) 0 nil])
+([nil nil ((339 . 342)) nil (25715 54244 322795 195000) 0 nil])
+([nil nil ((#(" " 0 1 (cider-locals ("pair-seq") help-echo cider--help-echo fontified t)) . -337) (undo-tree-id0 . -1) (undo-tree-id1 . -1) (undo-tree-id2 . -1) (undo-tree-id3 . -1) (undo-tree-id4 . -1) (#("s" 0 1 (cider-locals ("pair-seq") help-echo cider--help-echo rear-nonsticky t fontified t)) . -338) (undo-tree-id5 . -1) (undo-tree-id6 . -1) (#("i" 0 1 (cider-locals ("pair-seq") help-echo cider--help-echo fontified t)) . -339) (undo-tree-id7 . -1) (undo-tree-id8 . -1) (#("r" 0 1 (cider-locals ("pair-seq") help-echo cider--help-echo fontified t)) . -340) (undo-tree-id9 . -1) (undo-tree-id10 . -1) (#("s" 0 1 (cider-locals ("pair-seq") help-echo cider--help-echo fontified t)) . -341) (undo-tree-id11 . -1) (undo-tree-id12 . -1) 342) nil (25715 54244 322785 640000) 0 nil])
+([nil nil ((337 . 343)) nil (25715 54244 322690 104000) 0 nil])
+([nil nil ((#(";" 0 1 (fontified t help-echo cider--help-echo cider-locals nil face font-lock-comment-delimiter-face)) . 359) (t 25715 54244 332819 78000)) nil (25715 55356 790778 62000) 0 nil])
+([nil nil ((359 . 360) (t 25715 55356 791236 20000)) nil (25715 55381 169675 920000) 0 nil])
+([nil current ((#("v" 0 1 (fontified t help-echo cider--help-echo cider-locals nil face font-lock-comment-face)) . -360) (undo-tree-id0 . -1) 361 (360 . 361) (t 25715 55381 170984 128000)) nil (25715 55572 677989 137000) 0 nil])
+nil
