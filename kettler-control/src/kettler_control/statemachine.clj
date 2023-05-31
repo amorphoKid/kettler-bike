@@ -36,27 +36,49 @@
 (defn wait-some [ms]
         (Thread/sleep ms))
 
+(defn get-minutes [pars]
+  (/ (- (:t @pars) (:t0 @pars)) 60000.))
+
+
+(defn get-power-by-minutes [pars]
+  (ttv/choose-value-from-pairs (:seq @pars) (get-minutes pars)))
+
+(defn seq-finished [pars]
+  (<= (first (first (:seq @pars))) (get-minutes pars)))
+
+(defn power-changed [pars]
+  (not= (:power-target @pars) (get-power-by-minutes pars)))
 
 (defn kettler-automaton [pars]
-  {:init [{:conditions []
+  {:init [ {:conditions [(= "pw-target" (:mode @pars))]
+           :on-success #(update-pars pars :t (System/currentTimeMillis))
+           :transition :start-pw-target}
+          
+          {:conditions []
             :on-success #(update-pars pars :t (System/currentTimeMillis))
-            :transition :start}]
+            :transition :wait}]
 
-  :start [{:conditions []
+   :start-pw-target [{:conditions []
             :transition :check-power}]
    
-   :check-power [{:conditions []
-                  :on-success #(update-pars pars :t (System/currentTimeMillis))
+   :check-power [{:conditions [(power-changed pars)]
+                  :on-success #(update-pars pars :power-target (get-power-by-minutes pars))
+                  :transition :update-power}
+                 
+                 {:conditions []
                   :transition :wait}]
    
+   :update-power  [{:conditions []
+            :transition :wait}]
+
    :wait  [{:conditions []
             :on-success #(wait-some 500)
-            :transition :start}]})
+            :transition :init}]})
 
 (defn statemachine-thread
   [automaton pars start-state]
   (let [sm (state-machine (automaton pars) start-state)]
-    (while (not (= "exit" (:mode @pars)))
+    (while (not (or (seq-finished pars) (= (:mode @pars) "exit")))
       (do
         (Thread/sleep 100)
         (update-state sm)))

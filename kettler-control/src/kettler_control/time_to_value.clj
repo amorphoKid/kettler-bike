@@ -1,7 +1,5 @@
 (ns kettler-control.time-to-value)
 
-(def power-seq '([16 0] [14 100] [12 190] [2 160] [0 120])) 
-(def power-ints '([2 120] [10 160] [2 190] [2 100] [0 0])) 
 
 (defn seq-from-ints
   [int-pairs]
