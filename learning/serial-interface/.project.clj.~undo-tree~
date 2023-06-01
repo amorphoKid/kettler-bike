@@ -1,0 +1,8 @@
+(undo-tree-save-format-version . 1)
+"23d7392a155726b60ee5f3e4839d5a45f0825aae"
+[nil current nil nil (25721 1357 854793 232000) 0 nil]
+([nil nil ((462 . 463) (461 . 462) (458 . 461) (t 25717 6202 952105 293000) 406) ((#("
+  " 0 1 (fontified t help-echo cider--help-echo cider-locals nil) 1 3 (fontified nil help-echo cider--help-echo cider-locals nil)) . 458) (undo-tree-id3 . -3) (undo-tree-id4 . -1) (undo-tree-id5 . -3) (#("u" 0 1 (fontified nil help-echo cider--help-echo cider-locals nil)) . 461) (undo-tree-id6 . -1) (undo-tree-id7 . -1) (#("u" 0 1 (fontified t help-echo cider--help-echo cider-locals nil)) . 462)) (25721 1357 853752 791000) 0 nil] [nil nil ((461 . 462) (458 . 461) (t 25717 6202 952105 293000) 406) ((#("
+  " 0 1 (fontified t help-echo cider--help-echo cider-locals nil) 1 3 (fontified nil help-echo cider--help-echo cider-locals nil)) . 458) (undo-tree-id0 . -3) (undo-tree-id1 . -1) (undo-tree-id2 . -3) (#("u" 0 1 (fontified t help-echo cider--help-echo cider-locals nil)) . 461)) (25721 1348 815368 664000) 0 nil])
+nil
+nil

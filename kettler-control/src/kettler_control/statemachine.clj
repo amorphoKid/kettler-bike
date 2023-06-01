@@ -1,7 +1,12 @@
 (ns kettler-control.statemachine
-  (:require [kettler-control.time-to-value :as ttv]))
+  (:require [kettler-control.time-to-value :as ttv]
+            [serial-port :as sp]
+            [kettler-control.serial :as sr]))
+
 ;; implementation taken from nakkaya.com/2010/06/22/finite-state-machine-implementation-in-clojure/ 
 ;; used with permission
+
+(use 'serial-port)
 
 (defn state-machine [transition-table initial-state]
   (ref initial-state :meta transition-table))
@@ -44,7 +49,7 @@
   (ttv/choose-value-from-pairs (:seq @pars) (get-minutes pars)))
 
 (defn seq-finished [pars]
-  (<= (first (first (:seq @pars))) (get-minutes pars)))
+  (<= (+ 0.1 (first (first (:seq @pars)))) (get-minutes pars)))
 
 (defn power-changed [pars]
   (not= (:power-target @pars) (get-power-by-minutes pars)))
@@ -69,17 +74,32 @@
                   :transition :wait}]
    
    :update-power  [{:conditions []
+                    :on-success #(sr/set-power (:port @pars) (:power-target @pars))
             :transition :wait}]
 
    :wait  [{:conditions []
             :on-success #(wait-some 500)
             :transition :init}]})
 
+
 (defn statemachine-thread
   [automaton pars start-state]
-  (let [sm (state-machine (automaton pars) start-state)]
+  
+  (let [sm (state-machine (automaton pars) start-state)
+        port (:port @pars)]
+    (sr/send-command port sr/b-reset)
+    (Thread/sleep 1000)
+    (sr/send-command port sr/b-cm)
+    (sr/set-power port 0)
     (while (not (or (seq-finished pars) (= (:mode @pars) "exit")))
       (do
         (Thread/sleep 100)
         (update-state sm)))
-  (println "exit...")))
+    (close port)
+    (println "exit...")
+    ))
+
+      
+
+
+
