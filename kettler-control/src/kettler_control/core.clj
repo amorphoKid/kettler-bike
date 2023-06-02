@@ -6,8 +6,8 @@
 
 
 (use 'serial-port)
-;;(def power-seq '([16 0] [14 100] [12 190] [2 160] [0 120])) 
-(def power-seq '([1.7 0] [1.6 100] [0.8 50] [0.2 30] [0 10])) 
+;(def power-seq '([16 0] [14 100] [12 190] [2 160] [0 120])) 
+(def power-seq '([5 0] [3 100] [2 50] [1 30] [0 10])) 
 (def power-ints '([3 0] [2 120] [10 160] [2 190] [2 100] [0 0])) 
 
 
@@ -30,4 +30,3 @@
   (sm/update-pars demo-pars :port port)  
   (Thread/sleep 1000)
   (future (sm/statemachine-thread sm/kettler-automaton demo-pars :init)))
-

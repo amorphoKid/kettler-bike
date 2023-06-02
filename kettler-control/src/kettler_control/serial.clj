@@ -29,8 +29,18 @@
     )
   )
 
+(defn state-string
+  [state-map]
+  (clojure.string/join ","
+        (map str
+             (map #(% state-map)
+                  [:pulse :power :req-power :time :rpm :speed :dist :energy]))))  
+
 (defn get-status-str [buf]
-    (clojure.string/join (map str (map char (pop buf)))))
+  (clojure.string/join (map str (map char (pop buf)))))
+
+(defn get-new-save-line []
+  (state-string (status-from-string (:status-str @kettler))))
 
 (defn add-new-char [char]
   (let [buf @buffer]
@@ -58,14 +68,13 @@
   (write port byte-arr)
   (while (= (:msg-status @kettler) "new")))
 
-(defn set-power [port pw]
-  (send-command port (byte-array-from-string (clojure.string/join ["PW " (str pw) "\n\r"])))
-  (get-status port))
-
 (defn get-status [port]
     (send-command port b-status)
     (status-from-string (:status-str @kettler)))
 
+(defn set-power [port pw]
+  (send-command port (byte-array-from-string (clojure.string/join ["PW " (str pw) "\n\r"])))
+  (get-status port))
 
 (defn update-power [port delta]
   (let [cur_pow_setpoint (:req-power (get-status port))

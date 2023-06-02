@@ -72,12 +72,18 @@
                  
                  {:conditions []
                   :on-success #(sr/get-status (:port @pars))
-                  :transition :wait}]
+                  :transition :save}]
    
    :update-power  [{:conditions []
                     :on-success #(sr/set-power (:port @pars) (:power-target @pars))
-            :transition :wait}]
-
+                    :transition :save}]
+   
+   :save [{:conditions []
+           :on-success #(spit
+                         (clojure.string/join [(str (:t0 @pars)) ".csv"])
+                         (clojure.string/join [(str (get-minutes pars)) "," (sr/get-new-save-line) "\n"]) :append true)
+           :transition :wait}]
+   
    :wait  [{:conditions []
             :on-success #(wait-some 500)
             :transition :init}]})
@@ -98,9 +104,4 @@
         (update-state sm)))
     (close port)
     (println "exit...")
-    ))
-
-      
-
-
-
+    ))  
