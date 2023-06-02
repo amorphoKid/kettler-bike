@@ -59,8 +59,8 @@
   (while (= (:msg-status @kettler) "new")))
 
 (defn set-power [port pw]
-  (send-command port (byte-array-from-string (clojure.string/join ["PW " (str pw) "\n\r"]))))
-
+  (send-command port (byte-array-from-string (clojure.string/join ["PW " (str pw) "\n\r"])))
+  (get-status port))
 
 (defn get-status [port]
     (send-command port b-status)

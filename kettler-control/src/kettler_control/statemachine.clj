@@ -71,6 +71,7 @@
                   :transition :update-power}
                  
                  {:conditions []
+                  :on-success #(sr/get-status (:port @pars))
                   :transition :wait}]
    
    :update-power  [{:conditions []
